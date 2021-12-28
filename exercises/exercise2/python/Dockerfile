@@ -5,7 +5,7 @@
 #
 
 FROM alpine:3.12
-
+RUN echo 
 # ensure local python is preferred over distribution python
 ENV PATH /usr/local/bin:$PATH
 
