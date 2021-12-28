@@ -1,0 +1,18 @@
+.autocomplete{
+    &.autocomplete-container{
+        position: relative;
+    }
+
+    .list{
+        position: absolute;
+        top: $buttons-line-height * $font-size + 2 * $buttons-border-width + $dropdown-list-margin-top-no-unit;
+        left: 0;
+        right: auto;
+        z-index: $dropdown-list-z-index;
+        color: $blue-night;
+
+        &.with-label{
+            top: $label-offset + $buttons-line-height * $font-size + 2 * $buttons-border-width + $dropdown-list-margin-top-no-unit;
+        }
+    }
+}

@@ -1,0 +1,89 @@
+.t_label{
+    border: $label-border-width solid $gray;
+    border-radius: $font-size * $label-line-height;
+    text-align: center;
+    color: $blue-night;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    outline: none;
+    padding: $label-padding;
+    font-size: $label-normal-font-size;
+    font-family: $font-family;
+    line-height: $label-line-height;
+
+    @each $color in $themes{
+        $key: nth($color, 1);
+        $value: nth($color, 2);
+        
+        &.#{$key}{
+            background: $value;
+            border-color: $value;
+            @include color-yiq($value);
+        }
+
+        &.outline{
+            background: transparent;
+        }
+
+        &.#{$key}.outline{
+            color: $value;
+        }
+    }
+
+    i:first-child{
+        margin-right: $margin-horizontal * 0.5;
+    }
+    
+    i:last-child{
+        margin-left: $margin-horizontal * 0.5;
+    }
+    
+    &.tiny{
+        font-size: $label-tiny-font-size;
+        padding: 0 $padding-horizontal*0.6;
+        border-radius: $label-tiny-font-size * $label-line-height;
+    
+        i:first-child{
+            margin-right: $padding-horizontal*0.6;
+        }
+    
+        i:last-child{
+            margin-left: $padding-horizontal*0.6;
+        }
+    }
+    
+    &.small{  
+        font-size: $label-small-font-size;
+        padding: 0 $padding-horizontal*0.8;
+        border-radius: $label-small-font-size * $label-line-height;
+    
+        i:first-child{
+            margin-right: $padding-horizontal*0.8;
+        }
+      
+        i:last-child{
+            margin-left: $padding-horizontal*0.8;
+        }
+    }
+    
+    &.large{
+        font-size: $label-large-font-size;
+        padding: 0 $padding-horizontal*1.2;
+        border-radius: $label-large-font-size * $label-line-height;
+    
+        i:first-child{
+          margin-right: $padding-horizontal*1.2;
+        }
+      
+        i:last-child{
+          margin-left: $padding-horizontal*1.2;
+        }
+    }
+    
+    i{
+        font-size: 1.8em;
+        line-height: 0.2;
+    }
+}

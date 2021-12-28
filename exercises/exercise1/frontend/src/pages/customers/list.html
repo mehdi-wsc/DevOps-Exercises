@@ -1,0 +1,24 @@
+<template>
+    <h2>Clients</h2>
+
+    <div class="table-container marg-t-20">
+        <table class="">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Prenom</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr repeat.for="c of list">
+                    <td>${c.id}</td>
+                    <td>${c.first_name}</td>
+                    <td>${c.last_name}</td>
+                    <td>${c.email}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</template>

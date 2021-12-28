@@ -1,0 +1,24 @@
+<template>
+    <h2>Produits</h2>
+
+    <require from="../../resources/converters"></require>
+
+    <div class="table-container marg-t-20">
+        <table class="">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Prix (HT)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr repeat.for="c of list">
+                    <td>${c.id}</td>
+                    <td>${c.name}</td>
+                    <td>${c.price_ht | numberFormat} &euro; HT</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</template>

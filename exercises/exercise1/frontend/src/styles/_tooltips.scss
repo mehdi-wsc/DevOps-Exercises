@@ -1,0 +1,102 @@
+.tooltip{
+    display: inline-block;
+    position: relative;
+
+    .content{
+        position: absolute;
+        top: -0.5rem;
+        left: 100% + $tooltip-offset-percent; 
+        padding: $tooltip-padding;
+        border: $tooltip-border-width solid $tooltip-border-default-color;
+        background: $white;
+        border-radius: $border-radius;
+        min-width: $tooltip-min-width;
+        z-index: $layouts-foreground;
+        box-shadow: $tooltip-box-shadow;
+
+        &::after {
+            content: " ";
+            position: absolute;
+            top: 50%;
+            right: 100%;
+            margin-top: -5px;
+            border-width: $tooltip-arrow-size;
+            border-style: solid;
+            border-color: transparent $tooltip-arrow-default-color transparent transparent;
+        }
+
+        &.left{
+            top: -0.5rem;
+            left: auto;
+            right: 100% + $tooltip-offset-percent; 
+            
+            &::after{
+                content: " ";
+                position: absolute;
+                top: 50%;
+                left: 100%;
+                border-color: transparent transparent transparent $tooltip-arrow-default-color;
+            }
+        }
+
+        &.bottom{
+            top: 100% + $tooltip-offset-percent;
+            left: 50%; 
+            margin-left: -100px; 
+            
+            &::after {
+                content: " ";
+                position: absolute;
+                top: -5px;
+                left: 50%;
+                margin-left: -5px;
+                border-color: transparent transparent $tooltip-arrow-default-color transparent;
+            }
+        }
+
+        &.top{
+            top: auto;
+            bottom: 100% + $tooltip-offset-percent;
+            left: 50%; 
+            margin-left: -100px;
+            
+            &::after{
+                content: " ";
+                position: absolute;
+                top: 100%;
+                bottom: auto;
+                left: 50%;
+                border-color: $tooltip-arrow-default-color transparent transparent transparent;
+                margin-top: 0;
+                margin-left: -5px;
+            }
+        }
+
+        @each $color in $themes{
+            $key: nth($color, 1);
+            $value: nth($color, 2);
+        
+            &.#{$key}{
+                background: $value;
+                border-color: $value;
+                @include color-yiq($value);
+
+                &::after{
+                    border-color: transparent $value transparent transparent;
+                }
+
+                &.left::after{
+                    border-color: transparent transparent transparent $value;
+                }
+
+                &.bottom::after{
+                    border-color: transparent transparent $value transparent;
+                }
+
+                &.top::after{
+                    border-color: $value transparent transparent transparent;
+                }
+            }
+        }
+    }
+}

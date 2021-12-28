@@ -1,0 +1,67 @@
+.card{
+    border: $cards-border-width solid $cards-border-color;
+    border-radius: $cards-border-radius;
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle;
+
+    @each $color in $themes{
+        $key: nth($color, 1);
+        $value: nth($color, 2);
+        
+        &.card-#{$key}{
+          background: $value;
+          border-color: $value;
+          @include color-yiq($value);
+        }
+    }
+
+    .card-header{
+        line-height: $cards-header-line-height;
+        border-bottom: $cards-border-width solid $cards-border-color;
+        padding: 0 $padding-horizontal;
+    }
+
+    .card-body{
+        padding: $cards-padding;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    
+        &.center{
+            align-items: center;
+            text-align: center;
+        
+            @for $i from 1 through 5{
+                h#{$i} { 
+                    align-items: center;
+                }
+            }
+        }
+    
+        &.right{
+            align-items: flex-end;
+            text-align: right;
+        
+            @for $i from 1 through 5{
+                h#{$i} { 
+                    align-items: flex-end;
+                }
+            }
+        }
+
+        p:not(:only-child){
+            margin: $margin-vertical 0;
+        }
+        
+        p:last-child{
+            margin-bottom: 0;
+        }
+        
+        p:first-child{
+            margin-bottom: 0;
+        }
+    }
+}

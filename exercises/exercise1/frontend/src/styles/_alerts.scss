@@ -1,0 +1,60 @@
+.alerts-container{
+    position: absolute;
+    right: $margin-horizontal * 2;
+    top: $margin-vertical;
+    z-index: $alerts-z-index;
+}
+
+.alert{
+    padding: $alerts-padding;
+    color: $white;
+    border-radius: $alerts-border-radius;
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+    box-shadow: $alerts-box-shadow;
+    margin-bottom: $margin-vertical * 0.5;
+    z-index: $alerts-z-index+1;
+
+    @each $color in $themes{
+        $key: nth($color, 1);
+        $value: nth($color, 2);
+    
+        &.alert-#{$key}{
+            background: makeAlpha($value, 0.6);
+            @include color-yiq($value);
+        }
+    }
+    
+    .alert-content{
+        flex-grow: 2;
+        align-self: center;
+
+        h4{    
+            margin-bottom: 6px;
+            margin-top: 2px;
+        }
+    }
+    
+    .alert-action-icons{
+        line-height: 2rem;
+        cursor: pointer;
+    }
+    
+    .alert-icon{
+        font-size: 1.3rem;
+        margin-right: 16px;
+    }
+
+    &.alert-hide {
+        animation-duration: 1s;
+        animation-name: fade-out;
+        animation-fill-mode: both;
+    }
+
+    &.alert-show {
+        animation-duration: 1s;
+        animation-name: fade-in;
+        animation-fill-mode: both;
+    }
+}

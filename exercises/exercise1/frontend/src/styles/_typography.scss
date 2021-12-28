@@ -1,0 +1,36 @@
+html{
+  font-size: ($font-size / 16px) * 100%;
+}
+
+body{
+  font-size: $font-size;
+  font-size: 1rem;
+  line-height: $line-height;
+  font-weight: $font-weight-normal;
+  font-family: $font-family;
+  color: $font-color;
+}
+
+@for $index from 1 through 6 {
+  h#{$index}{
+    font-size: map-get($h-font-sizes, $index);
+    line-height: $headings-line-height;
+    font-weight: $headings-font-weight;
+  }
+
+  h#{$index}.center{
+    text-align: center;
+  }
+
+  h#{$index}.right{
+    text-align: right;
+  }
+
+  h#{$index}.underline::after{
+    content: ' ';
+    height: 20px;
+    border-bottom: 1px solid $blue-sky;
+    width: 200px;
+    display: block;
+  }
+}

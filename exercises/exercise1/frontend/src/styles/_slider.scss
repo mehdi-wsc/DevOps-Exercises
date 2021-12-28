@@ -1,0 +1,59 @@
+.slider-container{
+    display: flex;
+    position: relative;
+    min-height: $slider-container-min-height;
+
+    .slider-back-bar,
+    .slider-active-bar{
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        top: $slider-container-min-height / 2 - $slider-bar-height / 2;
+        height: $slider-bar-height;
+        background: $gray;
+    }
+
+    .slider-active-bar{
+        background: $blue-sky;
+    }
+
+    .slider-minmax-value{
+        position: absolute;
+        top: $slider-container-min-height / 2 + $slider-marker-size / 2 + $slider-minmax-value-top-offset;
+        
+        &.min{
+            left: 0;
+        }
+
+        &.max {
+            right: 0;
+        }
+    }
+
+    .slider-marker-value{
+        position: absolute;
+        line-height: $slider-marker-value-line-height;
+        background: $blue-sky;
+        border-radius: $slider-marker-value-border-radius;
+        color: $white;
+        padding: $slider-marker-value-padding;
+    }
+
+    .slider-marker-container{
+        position: absolute;
+        width: $slider-marker-size;
+        height: $slider-marker-size;
+        border-radius: 50%;
+        border: $slider-marker-border-width solid $slider-marker-border-color;
+        top: $slider-container-min-height / 2 - $slider-marker-size / 2 + $slider-marker-border-width;
+        background: $slider-marker-background;
+
+        .slider-marker-pin{
+            margin: $slider-marker-size / 4;
+            width: $slider-marker-size / 2;
+            height: $slider-marker-size / 2;
+            border-radius: 50%;
+            background: $slider-marker-target-background;
+        }
+    }
+}

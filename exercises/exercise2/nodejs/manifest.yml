@@ -1,0 +1,3 @@
+registry:
+image: nodejs
+version: 14

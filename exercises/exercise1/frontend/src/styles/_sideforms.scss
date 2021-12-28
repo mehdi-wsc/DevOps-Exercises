@@ -1,0 +1,60 @@
+.side-form{
+    position: fixed;
+    top: 0;
+    right: 0;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: auto;
+    z-index: $sideform-z-index;
+    background: $white;
+    min-width: $sideform-min-width;
+    box-shadow: $sideform-box-shadow;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+
+    &.shown{
+        transform: translateX(0);
+    }
+
+    &.closed{
+        transform: translateX(100%);
+    }
+
+    .close-button{
+        align-self: flex-end;
+        margin: $margin-vertical $margin-horizontal;
+        cursor: pointer;
+    }
+
+    .content{
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        justify-content: flex-start;
+        align-items: stretch;
+
+        &.justify-center{
+            justify-content: center;
+        }
+
+        &.align-center{
+            align-items: center;
+        }
+    }
+
+    &.animated{
+        animation-duration: $sideform-animation-duration;
+
+        &.shown{
+            transform: translateX(0);
+            animation-name: right-slide-on;
+        }
+
+        &.closed{
+            transform: translateX(100%);
+            animation-name: right-slide-off;
+        }
+    }
+}

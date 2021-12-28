@@ -1,0 +1,196 @@
+button.btn{
+  border: $buttons-border-width solid $gray;
+  border-radius: $buttons-border-radius;
+  text-align: center;
+  color: $blue-night;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  padding: $buttons-padding;
+  box-shadow: $buttons-box-shadow;
+  font-size: $buttons-normal-font-size;
+  font-family: $font-family;
+  line-height: $buttons-line-height;
+  transition: color .20s ease-in-out,
+  background-color .20s ease-in-out,
+  border-color .20s ease-in-out;
+
+  & > div{
+    flex-grow: 2;
+    align-items: flex-start;
+    display: flex;
+  }
+
+  @each $color in $themes{
+    $key: nth($color, 1);
+    $value: nth($color, 2);
+    
+    &.btn-#{$key}{
+      background: $value;
+      border-color: $value;
+      @include color-yiq($value);
+    }
+
+    &.outline{
+      background: transparent;
+    }
+
+    &.btn-#{$key}.outline{
+      color: $value;
+    }
+
+    &.btn-#{$key}.outline:hover,
+    &.btn-#{$key}.outline:active,
+    &.btn-#{$key}.outline.active{
+      @include color-yiq($value);
+    }
+
+    &.btn-#{$key}:hover{
+      background: lighten($value, $buttons-hover-lighten);
+      border-color: lighten($value, $buttons-hover-lighten);
+    }
+
+    &.btn-#{$key}:active,
+    &.btn-#{$key}.active:not(.disabled){
+      background: lighten($value, $buttons-active-lighten);
+      border-color: lighten($value, $buttons-active-lighten);
+    }
+
+    &.flat{
+      background: transparent;
+      border-color: transparent;
+      box-shadow: none;
+
+      &.btn-#{$key}{
+        color: $value;
+      }
+
+      &.btn-#{$key}:hover{
+        color: lighten($value, $buttons-hover-lighten);
+        background: transparent;
+        border-color: transparent;
+      }
+
+      &.btn-#{$key}:active:not(.disabled){
+        color: lighten($value, $buttons-active-lighten);
+        background: transparent;
+        border-color: transparent;
+      }
+    }
+  }
+
+  i{
+    line-height: $buttons-line-height * 0.6;
+
+    &:first-child{
+      margin-right: $margin-horizontal;
+    }
+
+    &:last-child{
+      margin-left: $margin-horizontal;
+    }
+  }
+
+  &.disabled{
+    background: $gray !important;
+    color: $gray-dark !important;
+    border-color: $gray !important;
+    cursor: default !important;
+  }
+
+  &.tiny{
+    font-size: $buttons-tiny-font-size;
+    padding: 0 $padding-horizontal*0.6;
+
+    i:first-child{
+      margin-right: $padding-horizontal*0.6;
+    }
+
+    i:last-child{
+      margin-left: $padding-horizontal*0.6;
+    }
+  }
+
+  &.small{  
+    font-size: $buttons-small-font-size;
+    padding: 0 $padding-horizontal*0.8;
+
+    i:first-child{
+      margin-right: $padding-horizontal*0.8;
+    }
+  
+    i:last-child{
+      margin-left: $padding-horizontal*0.8;
+    }
+  }
+
+  &.large{
+    font-size: $buttons-large-font-size;
+    padding: 0 $padding-horizontal*1.2;
+
+    i:first-child{
+      margin-right: $padding-horizontal*1.2;
+    }
+  
+    i:last-child{
+      margin-left: $padding-horizontal*1.2;
+    }
+  }
+
+  i{
+    font-size: 1.8em;
+    //line-height: 0.2;
+  }
+
+  .badge{
+    padding: $badges-padding * 0.6;
+  }
+}
+
+.btn-group{
+  display: inline-flex;
+
+  .btn{
+    border-radius: 0;
+  }
+
+  &:not(.vertical){
+    .btn{
+      border-right-width: 0;
+    }
+
+    .btn:first-child{
+      border-top-left-radius: $buttons-border-radius;
+      border-bottom-left-radius: $buttons-border-radius;
+    }
+    .btn:last-child{
+      border-top-right-radius: $buttons-border-radius;
+      border-bottom-right-radius: $buttons-border-radius;
+      border-right-width: $buttons-border-width;
+    }
+  }
+
+  &.vertical{
+    flex-direction: column;
+
+    .btn{
+      border-bottom-width: 0;
+    }
+
+    .btn:first-child{
+      border-top-left-radius: $buttons-border-radius;
+      border-top-right-radius: $buttons-border-radius;
+    }
+
+    .btn:last-child{
+      border-bottom-left-radius: $buttons-border-radius;
+      border-bottom-right-radius: $buttons-border-radius;
+      border-bottom-width: $buttons-border-width;
+    }
+  }
+
+}

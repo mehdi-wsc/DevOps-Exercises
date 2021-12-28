@@ -1,0 +1,149 @@
+.navbar{
+    min-height: $navbar-min-height;
+    background: $navbar-background;
+    box-shadow: $navbar-box-shadow;
+    display: flex;
+    z-index: $navbar-z-index;
+    justify-content: space-between;
+    align-items: center;
+    padding: $navbar-padding;
+    position: relative;
+
+    & > .content{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+
+        .left-content,
+        .right-content{
+            display: flex;
+            align-items: center;
+
+            div{
+                display: flex;
+            }
+        }
+        
+        .logo-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: $navbar-logo-container-margin-right;
+
+            .logo{
+                max-height: $navbar-logo-max-height;
+            }
+        }
+    }
+
+    .content-min{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+
+        .logo{
+            max-height: $navbar-logo-max-height;
+        }
+
+        .burger-button{
+            position: absolute;
+            left: 0;
+        }
+    }
+
+    &.dark{
+        background: $navbar-dark-background;
+        color: $navbar-dark-color;
+
+        .nav{
+            a:not(:hover):not(.active):not(.disabled){
+                color: $navbar-dark-color;
+            }
+        }
+    }
+
+    @include breakpoint-min(md){
+        .content-min{
+            display: none;
+        }
+    }
+
+    @include breakpoint-max(md){
+        .content-min{
+            display: flex;
+        }
+        
+        & > .content{
+            background: $white;
+            justify-content: flex-start;
+            position: absolute;
+            top: $navbar-min-height;
+            left: 0;
+            height: calc(100vh - #{strip-unit($navbar-min-height)}*#{$font-size});
+            min-width: $navbar-mobile-content-width;
+            width: $navbar-mobile-content-width;
+            box-shadow: $navbar-box-shadow;
+            display: flex;
+            flex-direction: column;
+            overflow: auto;
+
+            &.burger-opened{
+                transform: translateX(0);
+                opacity: 1;
+                &.animated{
+                    animation-duration: $navbar-mobile-animation-duration;
+                    animation-name: left-slide-on;
+                }
+            }
+
+            &.burger-closed{
+                transform: translateX(-100%);
+                opacity: 0;
+                &.animated{
+                    animation-duration: $navbar-mobile-animation-duration;
+                    animation-name: left-slide-off;
+                }
+            }
+
+            ul.dropdown.list{
+                right: 0;
+                left: 0;
+            }
+
+            .left-content,
+            .right-content{
+                flex-direction: column;
+
+                .logo-container{
+                    display: none;
+                }
+
+                .nav{
+                    flex-direction: column;
+                }
+
+                div{
+                    flex-direction: column;
+                }
+            }
+
+            .left-content{
+                margin-bottom: $navbar-mobile-left-margin-bottom;
+
+                .nav a{
+                    margin-right: 0;
+                    text-align: center;
+                }
+            }
+        }
+
+        &.dark{
+            .content{
+                background: $blue-night;
+            }
+        }
+    }
+}

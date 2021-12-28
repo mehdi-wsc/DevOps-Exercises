@@ -1,0 +1,33 @@
+<template>
+    <require from="../../resources/converters"></require>
+
+    <h2>Commandes</h2>
+
+    <div class="table-container marg-t-20">
+        <table class="">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Client</th>
+                    <th>Driver</th>
+                    <th>Zone</th>
+                    <th>Adresse</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr repeat.for="c of list">
+                    <td>${c.id}</td>
+                    <td>
+                        ${c.customer_first_name} ${c.customer_last_name}<br />
+                        ${c.email}
+                    </td>
+                    <td>${c.driver_first_name} ${c.driver_last_name}</td>
+                    <td>${c.zone_name}</td>
+                    <td>${c.location}</td>
+                    <td>${c.schedule_date | dateFormat}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</template>

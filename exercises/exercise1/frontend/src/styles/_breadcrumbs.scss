@@ -1,0 +1,33 @@
+ul.breadcrumb{
+    list-style: none;
+    background: $gray-light;
+    display: inline-flex;
+    border-radius: $breadcrumbs-border-radius;
+    font-size: $breadcrumbs-font-size;
+
+    &.white{
+        background: $white;
+        border: $breadcrumbs-border-width solid $gray;
+    }
+
+    li{
+        line-height: $breadcrumbs-item-line-height;
+        padding: $breadcrumbs-item-padding;
+    }
+
+    li:not(.separator):hover, 
+    li.active{
+        color: $pink;
+        cursor: pointer;
+    }
+
+    li.disabled, 
+    li.disabled:hover{
+        color: $gray-dark;
+        cursor: default;
+    }
+
+    li.separator{
+        padding: 0;
+    }
+}

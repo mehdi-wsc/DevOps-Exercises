@@ -1,0 +1,141 @@
+ul.list{
+    list-style: none;
+    border: $lists-border-width solid $lists-border-color;
+    border-radius: $lists-border-radius;
+    display: inline-flex;
+    flex-direction: column;
+    background: $white;
+    min-width: $lists-min-width;
+    vertical-align: middle;
+
+    transition: color .20s ease-in-out,
+        background-color .20s ease-in-out,
+        border-color .20s ease-in-out;
+
+    &:empty {
+        display: none;
+    }
+
+    li{
+        padding: $lists-items-padding;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        transition: color .20s ease-in-out,
+            background-color .20s ease-in-out,
+            border-color .20s ease-in-out;
+
+        > .content{
+            flex-grow: 2;
+            padding: $lists-items-content-padding;
+
+            .second-text {
+                font-size: 0.875em;
+                color: $gray-dark;
+            }
+
+            &.with-second-text{
+                padding: 0.5em;
+            }
+        }
+
+        > .side-text {
+            font-size: 0.950em;
+            text-align: right;
+            color: $blue-night;
+        }
+
+        > i{
+            font-size: 1.8em;
+            line-height: 0.2;
+            margin-right: $margin-horizontal;
+        }
+
+        &:not(.disabled):hover{
+            color: $blue-sky;
+            cursor: pointer;
+        }
+
+        &.active,
+        &.active:hover{
+            color: $white;
+            background: $blue-sky;
+
+            .second-text{
+                color: $gray-light;
+            }
+        }
+
+        &.disabled{
+            color: $gray-dark;
+            cursor: default;
+        }
+    }
+
+    &.bordered{
+        li:not(:last-child){
+            border-bottom: $lists-border-width solid $lists-border-color;
+        }
+    }
+
+    &.dark{
+        background-color: $blue-night;
+        border-color: $blue-night;
+
+        li:not(:hover){
+            color: $white;
+            > .content .second-text{
+                color: $gray-light;
+            }
+        }
+
+        li:hover{
+            > .content .second-text{
+                color: $gray-light;
+            }
+        }
+
+        &.bordered{
+            > li:not(:last-child){
+                border-bottom-color: $white;
+            }
+        }
+    }
+
+    &.horizontal{
+        flex-direction: row;
+        border-width: 0;
+        background: transparent;
+
+        li{
+            padding: 0;
+
+            &:not(:last-child){
+                padding: $lists-horizontal-items-padding;
+            }
+
+
+            &:not(.disabled):hover{
+                color: $pink;
+                cursor: pointer;
+            }
+    
+            &.active,
+            &.active:hover{
+                color: $pink;
+                background: transparent;
+    
+                .second-text{
+                    color: $gray-light;
+                }
+            }
+        }
+
+        &.bordered{
+            > li:not(:last-child){
+                border-bottom: 0;
+            }
+        }
+    }
+}

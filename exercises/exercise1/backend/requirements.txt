@@ -1,0 +1,8 @@
+flask==1.0.2
+flask-cors==3.0.4
+ConfigParser
+pytest
+pytest-cov==2.5.1
+requests
+python-dotenv
+psycopg2-binary

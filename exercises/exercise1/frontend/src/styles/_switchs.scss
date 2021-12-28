@@ -1,0 +1,104 @@
+@keyframes slide-on-back {
+    0% { background: $gray; }
+    100% { background: $blue-sky; }
+}
+
+@keyframes slide-off-back {
+    0% { background: $blue-sky; }
+    100% { background: $gray; }
+}
+
+.switch-container{  
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+    .label{
+        margin-left: $switch-label-margin;
+    }
+
+    .element{
+        min-width: $switch-width;
+        min-height: $switch-height;
+        border-radius: $switch-height;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        background: $white;
+        top: 0px;
+        display: inline-block;
+
+        .trigger-container{
+            position: relative;
+            width: 50%;
+
+            .trigger{
+                position: absolute;
+                background: $white;
+                width: ($font-size*strip-unit($switch-trigger-size)) - 2px;
+                height: ($font-size*strip-unit($switch-trigger-size)) - 2px;
+                border-radius: $switch-trigger-size * 0.5;
+                top: 0;
+                border: 1px solid;
+            }
+        }
+
+        &.animated{
+            animation-duration: 0.5s;
+
+            .trigger-container .trigger{
+                animation-duration: 0.5s;
+            }
+        }
+        
+        &.off{
+            background: $gray;
+            animation-name: slide-off-back;
+    
+            .trigger-container .trigger{
+                left: 0%;
+                animation-name: slide-off;
+                border-color: $gray;
+            }
+        }
+    
+        &.on{
+            background: $blue-sky;
+            animation-name: slide-on-back;
+    
+            .trigger-container .trigger{
+                left: 100%;
+                animation-name: slide-on;
+                border-color: $blue-sky;
+            }
+        }
+
+        @each $color in $themes{
+            $key: nth($color, 1);
+            $value: nth($color, 2);
+        
+            @keyframes slide-on-back-#{$key} {
+                0% { background: $gray; }
+                100% { background: $value; }
+            }
+            
+            @keyframes slide-off-back-#{$key} {
+                0% { background: $value; }
+                100% { background: $gray; }
+            }
+        
+            &.element-#{$key}.off{
+                animation-name: slide-off-back-#{$key};
+            }
+        
+            &.element-#{$key}.on{
+                background: $value;
+                animation-name: slide-on-back-#{$key};
+        
+                .trigger-container .trigger{
+                    border-color: $value;
+                }
+            }
+        }
+    }
+}

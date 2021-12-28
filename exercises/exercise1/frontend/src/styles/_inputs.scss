@@ -1,0 +1,294 @@
+/*
+ * TEXT INPUTS
+ */
+
+.input{
+    display: flex;
+    flex-direction: column;
+    font-size: $input-font-size;
+    justify-content: stretch;
+
+    .input-label{
+        margin: $input-label-margin;
+        line-height: 1;
+        font-size: $input-label-font-size;
+        transition: color .20s ease-in-out,
+            background-color .20s ease-in-out,
+            border-color .20s ease-in-out;
+    }
+
+    .info{
+        font-size: 0.625em;
+    }
+
+    .input-container{
+        display: flex;
+        border: $input-border-width solid $input-border-color;
+        border-radius: $input-border-radius;
+        vertical-align: middle;
+        padding: 0;
+        background-color: $white;
+        align-self: stretch;
+        justify-content: stretch;
+        align-items: center;
+        contain: content;
+        transition: color .20s ease-in-out,
+            background-color .20s ease-in-out,
+            border-color .20s ease-in-out;
+
+        &.in-group{
+            border-width: 0;
+        }
+
+        input[type="text"],
+        input[type="password"]{
+            line-height: $input-text-line-height;
+            height: $input-text-line-height;
+            padding: $input-text-padding;
+        }
+
+        textarea{
+            padding: $input-textarea-padding;   
+        }
+
+        input[type="text"],
+        input[type="password"],
+        textarea{
+            outline: none;
+            border: 0;
+            background: transparent;
+            font-size: $input-font-size;    
+            color: $blue-night; 
+            min-width: 0;
+            width: auto;
+            max-width: none;
+            flex-grow: 2;
+    
+            ::placeholder { 
+                color: $gray-light;
+                opacity: 1;
+            }
+            
+            :-ms-input-placeholder { 
+                color: $gray-light;
+            }
+            
+            ::-ms-input-placeholder {
+                color: $gray-light;
+            }
+        }
+
+        i{
+            font-size: 1.8em;
+            line-height: 0.2;
+        }
+
+        &:not(.input-group) i{
+            &:last-child{
+                margin-right: $margin-horizontal;
+            }
+
+            &:first-child{
+                margin-left: $margin-horizontal;
+            }
+        }
+    }
+
+    &.focused/*,
+    &:hover*/{
+        //color: $blue-sky;
+
+        .input-container{
+            border-color: $blue-sky;
+        }
+    }
+
+    &.success{
+        color: $green;
+
+        .input-container{
+            border-color: $green;
+        }
+    }
+
+    &.error{
+        color: $red;
+
+        .input-container{
+            border-color: $red;
+        }
+    }
+
+    &.disabled{
+        color: $gray-dark;
+
+        .input-container{
+            background: $gray-light;
+            border-color: $input-border-color;
+        }
+    }
+
+    &.input-group{
+        .input-container{
+            .input-group-item{
+                align-self: stretch;
+                background-color: $gray-light;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                vertical-align: middle;
+                min-width: $input-text-group-addon-line-height - $input-text-group-addon-padding;
+                line-height: $input-text-group-addon-line-height;
+
+                i{
+                    margin: 0;
+                }
+            
+                &.left{
+                    border-right: $input-border-width solid $input-border-color;
+                    border-top-left-radius: $input-border-radius;
+                    border-bottom-left-radius: $input-border-radius;
+
+                    .btn {
+                        border-top-right-radius: 0;
+                        border-bottom-right-radius: 0;
+                    }
+                }
+            
+                &.right{
+                    border-left: $input-border-width solid $input-border-color;
+                    border-top-right-radius: $input-border-radius;
+                    border-bottom-right-radius: $input-border-radius;
+
+                    .btn {
+                        border-top-left-radius: 0;
+                        border-bottom-left-radius: 0;
+                    }
+                }
+
+                div, input {
+                    margin: 0 $input-text-group-addon-padding;
+                }
+
+                .btn {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
+/*
+ * RADIO & CHECKBOX INPUTS
+ */
+.radio{
+    .checkmark{
+        border-radius: 50%;
+
+        &:after{
+            width: $input-radio-bullet-size;
+            height: $input-radio-bullet-size;
+            border-radius: 50%;
+            content: " ";
+            background: transparent;
+        }
+    }
+} 
+
+.checkbox{
+    .checkmark{
+        border-radius: $input-border-radius;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        vertical-align: middle;
+
+        i{
+            opacity: 0;
+            color: $white;
+            font-weight: $font-weight-bolder;
+            font-size: 1rem;
+        }
+    }
+} 
+
+
+.radio,
+.checkbox{
+    display: inline-flex;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: relative;
+
+    .checkmark {
+        height: $input-radio-checkbox-size;
+        width: $input-radio-checkbox-size;
+        background-color: transparent;
+        border: $input-border-width solid $input-border-color;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $white;
+    }
+
+    .label{
+        margin-left: 1rem;
+    }
+
+    input{
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+
+        &[type="radio"]{
+            &:not(:disabled):checked ~ .checkmark {
+                border-color: $blue-sky;
+                &:after {
+                    background: $blue-sky;
+                }
+            }
+    
+            &:disabled:checked ~ .checkmark {
+                border-color: $gray-dark;
+                &:after{
+                    background: $gray-dark;
+                }
+            }
+        }
+
+        &[type="checkbox"]{
+            &:not(:disabled):checked ~ .checkmark {
+                border-color: $blue-sky;
+                background: $blue-sky;
+
+                i{
+                    opacity: 1;
+                }
+            }
+    
+            &:disabled:checked ~ .checkmark {
+                border-color: $gray-dark;
+                background: $gray-dark;
+
+                i{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    
+    &:not(.disabled):hover input ~ .checkmark {
+        border-color: $blue-sky;
+    }
+
+    &.disabled{
+        color: $gray-dark;
+
+        .checkmark{
+            border-color: $gray-dark;
+        }
+    }
+}

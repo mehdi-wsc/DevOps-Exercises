@@ -1,0 +1,97 @@
+// Color contrast
+@mixin color-yiq($color) {
+  color: get-color-yiq($color);
+}
+
+@function get-color-yiq($color) {
+  $r: red($color);
+  $g: green($color);
+  $b: blue($color);
+
+  $yiq: (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
+
+  $return: $white;
+  @if ($yiq >= 150){
+    $return: $blue-night;
+  }
+
+  @return $return;
+}
+
+@function makeAlpha($color, $alpha){
+  $r: red($color);
+  $g: green($color);
+  $b: blue($color);
+
+  @return rgba($r, $g, $b, $alpha);
+}
+
+@function contains($list,$var) {
+  @return (false == index($list, $var));
+}
+
+@function theme-color($key: "primary") {
+  @return map-get($themes, $key);
+}
+
+@function size($key: "xs") {
+  @return map-get($sizes, $key);
+}
+
+@mixin breakpoint-min($point) {
+  $pt: map-get($breakpoints, $point);
+
+  @if $pt {
+    @media screen and (min-width: $pt) { @content; }
+  }
+  @else {
+    @content;
+  }
+}
+
+@mixin breakpoint-max($point) {
+  $pt: map-get($breakpoints, $point);
+
+  @if $pt {
+    @media screen and (max-width: $pt+0.1) { @content; }
+  }
+  @else {
+    @content;
+  }
+}
+
+@mixin col-offset($column) {
+  margin-left: 100% / $grid-nb-columns * $column;
+}
+
+@mixin col-numbered($column) {
+  @if $column == 12 {
+    flex-basis: auto;
+  }
+  @else {
+    flex-basis: 100% / $grid-nb-columns * $column;
+  }
+  max-width: 100% / $grid-nb-columns * $column;
+}
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+@function reverse($list, $recursive: false) {
+  $result: ();
+
+  @for $i from length($list) *-1 through -1 {
+    @if type-of(nth($list, abs($i))) == list and $recursive {
+      $result: append($result, reverse(nth($list, abs($i)), $recursive));
+    } @else {
+      $result: append($result, nth($list, abs($i)));
+    }
+  }
+
+  @return $result;
+}

@@ -1,0 +1,27 @@
+<template>
+	<require from="./pages/customers/list"></require>
+	<require from="./pages/drivers/list"></require>
+	<require from="./pages/zones/list"></require>
+	<require from="./pages/products/list"></require>
+	<require from="./pages/orders/list"></require>
+
+	<div class="pad-50">
+		<div class="nav">
+			<a 
+				repeat.for="m of menu" 
+				class="${page === m.key ? 'active' : ''}" 
+				click.delegate="page=m.key"
+			>
+				${m.label}
+			</a>
+		</div>
+	
+		<div class="content marg-t-50">
+			<customer-list if.bind="page==='customers'"></customer-list>
+			<driver-list if.bind="page==='drivers'"></driver-list>
+			<zone-list if.bind="page==='zones'"></zone-list>
+			<product-list if.bind="page==='products'"></product-list>
+			<order-list if.bind="page==='orders'"></order-list>
+		</div>
+	</div>
+</template>

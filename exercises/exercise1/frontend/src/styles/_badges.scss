@@ -1,0 +1,17 @@
+.ty-badge{
+    padding: $badges-padding;
+    font-size: $badges-font-size;
+    border-radius: $badges-border-radius;
+    margin: $badges-margin;
+    line-height: 1;
+
+    @each $color in $themes{
+        $key: nth($color, 1);
+        $value: nth($color, 2);
+        
+        &.badge-#{$key}{
+          background: $value;
+          @include color-yiq($value);
+        }
+    }
+}

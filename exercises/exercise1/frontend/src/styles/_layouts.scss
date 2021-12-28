@@ -1,0 +1,126 @@
+// containers
+/*.container {
+  width: 100%;
+}*/
+.container{
+  width: auto;   
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+// rows
+.row {
+	box-sizing: border-box;
+	display: flex;
+  flex: 0 1 auto;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin-right: -$grid-gutter-width;
+	margin-left: -$grid-gutter-width;
+	margin-bottom: $margin-vertical;
+
+	&:last-of-type{
+		margin-bottom: 0;
+	}
+
+	&.reverse {
+		flex-direction: row-reverse;
+	}
+}
+
+.col.reverse {
+  flex-direction: column-reverse;
+}
+
+.col{
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  padding-right: $grid-gutter-width;
+  padding-left: $grid-gutter-width;
+  flex-grow: 1;
+  flex-basis: auto;
+  max-width: 100%;
+}
+
+// build columns for each size is sizes map
+@each $size, $breakpoint in $breakpoints {
+
+  @include breakpoint-min($size) {
+    %col-base-#{$size} {
+      box-sizing: border-box;
+      flex: 0 0 auto;
+      flex-basis: auto;
+      padding-right: $grid-gutter-width;
+      padding-left: $grid-gutter-width;
+    }
+
+    %col-auto-#{$size} {
+      flex-grow: 1;
+      flex-basis: 0;
+      max-width: 100%;
+    }
+
+    .col-#{$size} {
+      @extend %col-base-#{$size};
+      @extend %col-auto-#{$size};
+    }
+
+    @for $i from 0 through $grid-nb-columns {
+      .col-#{$size}-offset-#{$i} {
+        @extend %col-base-#{$size};
+        @include col-offset($i);
+      }
+    }
+
+    @for $i from 1 through $grid-nb-columns {
+      .col-#{$size}-#{$i} {
+        @extend %col-base-#{$size};
+        @include col-numbered($i);
+      }
+    }
+
+    .start-#{$size} {
+      justify-content: flex-start;
+      text-align: start;
+    }
+
+    .center-#{$size} {
+      justify-content: center;
+      text-align: center;
+    }
+
+    .end-#{$size} {
+      justify-content: flex-end;
+      text-align: end;
+    }
+
+    .top-#{$size} {
+      align-items: flex-start;
+    }
+
+    .middle-#{$size} {
+      align-items: center;
+    }
+
+    .bottom-#{$size} {
+      align-items: flex-end;
+    }
+
+    .around-#{$size} {
+      justify-content: space-around;
+    }
+
+    .between-#{$size} {
+      justify-content: space-between;
+    }
+
+    .first-#{$size} {
+      order: -1;
+    }
+
+    .last-#{$size} {
+      order: 1;
+    }
+  }
+}

@@ -1,0 +1,137 @@
+.table-container{
+    display: flex;
+    flex-direction: column;
+
+    .table-toolbar{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: $margin-vertical;
+
+        .table-mass-action{
+            margin-right: $margin-horizontal;
+        }
+
+        & > div {
+            display: flex;
+            flex-direction: row;
+
+            .pagination{
+                margin-left: $margin-horizontal;
+            }
+        }
+    }
+
+    table{
+        flex: 1;
+
+        thead{
+            tr{
+
+                th{
+                    text-align: left;
+                    background: $blue-night;
+                    color: $white;
+                    padding: $padding-horizontal $padding-vertical * 0.5;
+
+                    .header-content,
+                    .header-filter{
+                        text-align: left;
+                    }
+
+                    .header-content + .header-filter{
+                        margin-top: $margin-vertical * 0.5;
+                    }
+
+                    .header-content{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+
+                        &.sorted{
+                            cursor: pointer;
+                        }
+
+                        .sort-icons{
+                            display: flex;
+                            flex-direction: column;
+                            
+                            i {
+                                font-size: 0.5rem;
+
+                                &.hidden{
+                                    visibility: hidden;
+                                }
+                            }
+                        }
+                    }
+
+                    &.master-checkbox{
+                        vertical-align: bottom;
+                        text-align: center;
+                    }
+                }
+                    
+                &:first-child{
+                    th{
+                        border-top: 1px solid $gray;
+                        
+                        &:first-child{
+                            border-left: 1px solid $gray;
+                        }
+                        &:last-child{
+                            border-right: 1px solid $gray;
+                        }
+                    }
+                }
+            }
+        }
+
+        tbody{
+            tr{
+                border: 1px solid $gray;
+
+                td{
+                    text-align: left;
+                    padding: $padding;
+                    vertical-align: middle;
+
+                    &.row-checkbox{
+                        text-align: center;
+                    }
+                }
+
+                &:nth-child(odd) td{
+                    background-color: $white;
+                }
+
+                &:nth-child(even) td{
+                    background-color: $gray-light;
+                }
+
+                &:hover td{
+                    background-color: darken($gray-light, 5);
+                }
+
+                &.loading td{
+                    font-size: 5rem;
+                    text-align: center;
+                    vertical-align: middle;
+                }
+
+                &.selected td{
+                    border-top: 1px solid $blue-sky;
+                    border-bottom: 1px solid $blue-sky;
+
+                    &:last-child{
+                        border-right: 1px solid $blue-sky;
+                    }
+
+                    &:first-child{
+                        border-left: 1px solid $blue-sky;
+                    }
+                }
+            }
+        }
+    }
+}
