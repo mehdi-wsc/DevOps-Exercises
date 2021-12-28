@@ -10,7 +10,7 @@ It's divided in to 2 parts:
 
 You are expected for commit your answer in the answers folder.
 
-## Test 1 : Deploy on AWS
+## Exercise 1 : Deploy on AWS
 The development team did an API in Python and a Frontend in AureliaJS. The API is backed by a Postgresql database.
 
 You are asked to deploy it on AWS with the following requirements :
@@ -43,7 +43,7 @@ To test locally, you need to run in exercises/exercise1 folder
 docker-compose up
 ```
 
-## Test 2 : Docker images factory
+## Exercise 2 : Docker images factory
 We would like to maintain a library of docker images that can be used for tools or as base images for our developments.
 
 We have chosen to do this in a single git repository where we can find all our Dockerfiles to build our base images.
