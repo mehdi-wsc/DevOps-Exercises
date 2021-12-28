@@ -27,7 +27,7 @@ To go further (optional) you can:
 You are free to use any cloud resource that is required.
 
 ### Guide
-The applications to deploy can be found in the tests/test1 folder. There is a backend and a frontend.
+The applications to deploy can be found in the exercises/exercise1 folder. There is a backend and a frontend.
 
 To help you understand how the system works, we have added a docker compose file that can be launched locally.
 
@@ -36,9 +36,9 @@ Further more, we added Dockerfiles to build the applications.
 With docker compose, the API runs on port 5000, the database on port 5432 and the frontend on port 5001
 The frontend needs the API public address at build time to call it.
 This can be done by setting API_URL environment variable on build.
-Database environment variables settings for backend can be found in the Readme of folder tests/backend.
+Database environment variables settings for backend can be found in the Readme of folder exercises/backend.
 
-To test locally, you need to run in tests/test1 folder
+To test locally, you need to run in exercises/exercise1 folder
 ```
 docker-compose up
 ```
@@ -50,7 +50,7 @@ We have chosen to do this in a single git repository where we can find all our D
 
 In the git repository, each folder represents a docker image. Inside each folder, there is at least a Dockerfile and a manifest file that describes image name, image version and image repository address
 
-An example of the git repository can be found in the folder tests/test2.
+An example of the git repository can be found in the folder exercises/exercise2.
 
 You are asked to develop a tool in Python or Go to create a build factory with CI system.
 
