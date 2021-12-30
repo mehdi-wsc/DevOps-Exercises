@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database-deployment
+  labels:
+    app: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: database
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+      - name: database
+        image: postgres
+        env:
+          - name: POSTGRES_PASSWORD 
+            valueFrom:
+              secretKeyRef:
+                name: db-secret
+                key: POSTGRES_PASSWORD
+        ports:
+        - containerPort: "5432"
+        volumeMounts:
+        - mountPath: /tmp/app/install.postgres.sql
+          name: install-postgres
+        - mountPath: /tmp/app/data.postgres.sql
+          name: data-postgres
+        - mountPath: /docker-entrypoint-initdb.d/docker.init.sh
+          name: docker-init
+      volumes:
+      - name: docker-init
+        configMap:
+          name: docker.init.sh
+      - name: install-postgres
+        configMap:
+          name: install.postgres.sql
+      - name: data-postgres
+        configMap:
+          name: data.postgres.sql

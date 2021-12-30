@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: application
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: mehdi1upmc/backend:latest
+        env:
+        - name: DB_TYPE
+          value: postgres
+        - name: DB_USER
+          value: postgres
+        - name: DB_HOST
+          value: db
+        - name: DB_PORT
+          value: 5432
+        - name: DB_NAME
+          value: app
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: backend-secret
+              key: DB_PASSWORD
+        ports:
+        - containerPort: 5000
