@@ -24,13 +24,16 @@ spec:
                 name: db-secret
                 key: POSTGRES_PASSWORD
         ports:
-        - containerPort: "5432"
+        - containerPort: 5432
         volumeMounts:
         - mountPath: /tmp/app/install.postgres.sql
           name: install-postgres
+          subPath: install.postgres.sql
         - mountPath: /tmp/app/data.postgres.sql
           name: data-postgres
+          subPath: data.postgres.sql
         - mountPath: /docker-entrypoint-initdb.d/docker.init.sh
+          subPath: docker.init.sh
           name: docker-init
       volumes:
       - name: docker-init

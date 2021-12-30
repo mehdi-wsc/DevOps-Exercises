@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-deployment
-  namespace: application
   labels:
     app: backend
 spec:
@@ -26,7 +25,7 @@ spec:
         - name: DB_HOST
           value: db
         - name: DB_PORT
-          value: 5432
+          value: "5432"
         - name: DB_NAME
           value: app
         - name: DB_PASSWORD
