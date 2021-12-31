@@ -18,4 +18,4 @@ spec:
       - name: frontend
         image: mehdi1upmc/frontend:latest
         ports:
-        - containerPort: 5001
+        - containerPort: 5000
